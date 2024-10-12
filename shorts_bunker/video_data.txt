@@ -1,0 +1,10 @@
+Blanket
+Book
+Chair
+Clock
+Door
+Lamp
+Shelf
+Sofa
+Vase
+Window
