@@ -22,8 +22,8 @@ def download_images(search_terms):
             params = {
                 'key': API_KEY,
                 'q': term,
-                'image_type': 'image',
-                'per_page': 6 # Number of images to download per search term
+                'image_type': 'photo',
+                'per_page': 3  # Number of images to download per search term
             }
 
             # Make a GET request to the Pixabay API

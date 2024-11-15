@@ -1,10 +1,11 @@
-Blanket
-Book
+Arm Chair
+Bean Bag
+Bed
+Bench
 Chair
-Clock
-Door
-Lamp
-Shelf
+Chaise Lounge
+Ottoman
+Recliner
+Sectional Sofa
 Sofa
-Vase
-Window
+Stool

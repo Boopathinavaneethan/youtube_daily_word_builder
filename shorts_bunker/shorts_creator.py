@@ -1,7 +1,12 @@
+
 import os
 from moviepy.editor import ImageClip, concatenate_videoclips, AudioFileClip
 from gtts import gTTS  # For voice generation
 from pydub import AudioSegment  # For analyzing audio duration
+
+from shorts_bunker import image_creator_03
+
+image_creator_03
 
 # Paths
 images_folder = 'output_images'

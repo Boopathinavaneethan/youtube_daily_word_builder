@@ -1,3 +1,4 @@
+
 import os
 from moviepy.editor import ImageClip, concatenate_videoclips, AudioFileClip
 from gtts import gTTS  # For voice generation
@@ -19,7 +20,7 @@ def get_audio_duration(audio_path):
 # Function to create the common question audio only once
 def create_common_question_audio():
     if not os.path.exists(common_question_audio_path):
-        question_text = "Whhatt is this called?"
+        question_text = "Whhoo is this?"
         question_tts = gTTS(text=question_text, lang='en')
         question_tts.save(common_question_audio_path)
         print(f"Common question audio created: {common_question_audio_path}")
@@ -84,48 +85,31 @@ def video_creator():
         if i == len(image_order) - 1:
             if os.path.exists(question_img_path):
                 # For the last question, use the subscribe audio
-                print(f"Adding final subscribe clip with image: {question_img_path}")
                 question_clip = ImageClip(question_img_path).set_duration(subscribe_duration)
                 question_clip = question_clip.set_audio(AudioFileClip(subscribe_audio_path))
                 clips.append(question_clip)
-            else:
-                print(f"Final question image not found: {question_img_path}")
             continue
 
         # Check if the question image exists and create a clip for it
         if os.path.exists(question_img_path):
-            print(f"Adding question clip for image: {question_img_path}")
             # Use the common question audio for each question
             question_clip = ImageClip(question_img_path).set_duration(question_duration)
             question_clip = question_clip.set_audio(AudioFileClip(common_question_audio_path))
             clips.append(question_clip)
 
             # Add an additional 1-second pause using the same question image (for audience thinking time)
-            pause_clip = ImageClip(question_img_path).set_duration(2)
+            pause_clip = ImageClip(question_img_path).set_duration(1)
             clips.append(pause_clip)
-        else:
-            print(f"Question image not found: {question_img_path}")
 
         # Check if the answer image exists and create a clip for it
         if os.path.exists(answer_img_path):
             # Get the audio duration for the answer
             answer_audio_path = os.path.join(voices_folder, f"{img_name}_answer.mp3")
-            if os.path.exists(answer_audio_path):
-                answer_duration = get_audio_duration(answer_audio_path)
-                print(f"Adding answer clip for image: {answer_img_path} with audio: {answer_audio_path}")
+            answer_duration = get_audio_duration(answer_audio_path)
 
-                answer_clip = ImageClip(answer_img_path).set_duration(answer_duration)
-                answer_clip = answer_clip.set_audio(AudioFileClip(answer_audio_path))
-                clips.append(answer_clip)
-            else:
-                print(f"Answer audio not found: {answer_audio_path}")
-        else:
-            print(f"Answer image not found: {answer_img_path}")
-
-    # Check if clips were successfully created
-    if not clips:
-        print("No clips were created. Please check your images and audio files.")
-        return
+            answer_clip = ImageClip(answer_img_path).set_duration(answer_duration)
+            answer_clip = answer_clip.set_audio(AudioFileClip(answer_audio_path))
+            clips.append(answer_clip)
 
     # Concatenate all the clips into a single video
     final_clip = concatenate_videoclips(clips, method="compose")
