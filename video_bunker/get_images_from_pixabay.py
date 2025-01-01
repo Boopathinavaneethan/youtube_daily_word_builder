@@ -4,7 +4,7 @@ from PIL import Image
 from io import BytesIO
 
 # Your Pixabay API key
-API_KEY = '34125495-f9af36a5836109aa4aa9db750'  # Replace with your actual API key
+API_KEY = 'get_your_own_key'  # Replace with your actual API key
 
 # Function to load data from video_data.txt
 def load_video_data(filename):
