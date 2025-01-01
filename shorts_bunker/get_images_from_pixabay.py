@@ -22,7 +22,7 @@ def download_images(search_terms):
             params = {
                 'key': API_KEY,
                 'q': term,
-                'image_type': 'image',
+                'image_type': 'allphotos',
                 'per_page': 6 # Number of images to download per search term
             }
 

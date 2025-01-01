@@ -8,6 +8,8 @@ from shorts_bunker import image_creator_03
 
 image_creator_03
 
+
+
 # Paths
 images_folder = 'output_images'
 video_data_file = 'video_data.txt'

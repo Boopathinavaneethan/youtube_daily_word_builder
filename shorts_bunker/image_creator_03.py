@@ -1,6 +1,8 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 
+
+
 # Define the folder containing your images and output
 images_folder = 'images'
 output_folder = 'output_images'
